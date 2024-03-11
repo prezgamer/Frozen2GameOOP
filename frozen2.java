@@ -6,6 +6,7 @@ public class frozen2 {
     public static String[] playerName = {null,null};
     public static int[] playerPower = {0,0};
     public static int[] playerHealth = {0,0};
+    public static String[] playerMove = {null,null};
 
     public static void printMenu(){
         System.out.println("1. Elsa");
@@ -14,13 +15,44 @@ public class frozen2 {
         System.out.println("4. Olaf");
     }
 
-    public static void printPlayerStats() {
-        System.out.println("Player 1 Name: " + playerName[0]);
-        System.out.println("Player 1 Power: " + playerPower[0]);
-        System.out.println("Player 1 Health: " + playerHealth[0]);
-        System.out.println("Player 2 Name: " + playerName[1]);
-        System.out.println("Player 2 Power: " + playerPower[1]);
-        System.out.println("Player 2 Health: " +  playerHealth[1]);
+    public static void printGame() {
+
+        Scanner newScan = new Scanner(System.in);
+        System.out.println("Choose s,p,r: ");
+        playerMove[0] = newScan.nextLine();  // Read user input
+        System.out.println("Choose s,p,r: ");
+        playerMove[1] = newScan.nextLine();  // Read user input
+
+        if (playerMove[0].charAt(0) == 's' && playerMove[1].charAt(0) == 's'){
+            System.out.println("It is a tie");
+        } else if (playerMove[0].charAt(0) == 'r' && playerMove[1].charAt(0) == 'r'){
+            System.out.println("It is a tie");
+        } else if (playerMove[0].charAt(0) == 'p' && playerMove[1].charAt(0) == 'p'){
+            System.out.println("It is a tie");
+        } else if (playerMove[0].charAt(0) == 's' && playerMove[1].charAt(0) == 'p'){ //Player 1 wins, Player 2 Loses
+            System.out.println(playerName[0] + " Wins");
+            System.out.println(playerName[1] + " Loses");
+        } else if (playerMove[0].charAt(0) == 'p' && playerMove[1].charAt(0) == 'r'){ //Player 1 wins, Player 2 Loses
+            System.out.println(playerName[0] + " Wins");
+            System.out.println(playerName[1] + " Loses");
+        } else if (playerMove[0].charAt(0) == 'r' && playerMove[1].charAt(0) == 's'){ //Player 1 wins, Player 2 Loses
+            System.out.println(playerName[0] + " Wins");
+            System.out.println(playerName[1] + " Loses");
+        } else if (playerMove[1].charAt(0) == 's' && playerMove[0].charAt(0) == 'p'){ //Player 2 wins, Player 1 Loses
+            System.out.println(playerName[1] + " Wins");
+            System.out.println(playerName[0] + " Loses");
+        } else if (playerMove[1].charAt(0) == 'p' && playerMove[0].charAt(0) == 'r'){ //Player 2 wins, Player 1 Loses
+            System.out.println(playerName[1] + " Wins");
+            System.out.println(playerName[0] + " Loses");
+        } else if (playerMove[1].charAt(0) == 'r' && playerMove[0].charAt(0) == 's'){ //Player 2 wins, Player 1 Loses
+            System.out.println(playerName[1] + " Wins");
+            System.out.println(playerName[0] + " Loses");
+        } else {
+            System.out.println("Player 1 Move: " + playerMove[0]);
+            System.out.println("Player 2 Move: " + playerMove[1]);
+            System.out.println("Please key the correct letter");
+            printGame();
+        }
     }
 
     public static void chooseChar(){
@@ -120,6 +152,6 @@ public class frozen2 {
     public static void main(String[] args) {
         chooseChar();
         
-        printPlayerStats();
+        printGame();
     }
 }
