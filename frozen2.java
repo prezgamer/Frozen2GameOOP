@@ -15,13 +15,34 @@ public class frozen2 {
         System.out.println("4. Olaf");
     }
 
-    public static void printGame() {
+    public static void chooseSPR(int playerNo){
+        while (true) 
+        {
+            Scanner newScan = new Scanner(System.in);
 
-        Scanner newScan = new Scanner(System.in);
-        System.out.println("Choose s,p,r: ");
-        playerMove[0] = newScan.nextLine();  // Read user input
-        System.out.println("Choose s,p,r: ");
-        playerMove[1] = newScan.nextLine();  // Read user input
+            if (playerMove[playerNo] == null){
+                System.out.println(playerName[playerNo] + " please choose s,p,r: ");
+                playerMove[playerNo] = newScan.nextLine();  // Read user input
+                break;
+                // if ((playerMove[playerNo].charAt(0) != 's')|| 
+                // (playerMove[playerNo].charAt(0) != 'p')|| 
+                // (playerMove[playerNo].charAt(0) != 'r'))
+                // {
+                //     break;
+                // } else {
+                //     break;
+                // }
+                
+            }
+            break;
+        };
+
+    }
+
+    public static void printGame() 
+    {
+        chooseSPR(0);
+        chooseSPR(1);
 
         if (playerMove[0].charAt(0) == 's' && playerMove[1].charAt(0) == 's'){
             System.out.println("It is a tie");
@@ -48,9 +69,12 @@ public class frozen2 {
             System.out.println(playerName[1] + " Wins");
             System.out.println(playerName[0] + " Loses");
         } else {
-            System.out.println("Player 1 Move: " + playerMove[0]);
-            System.out.println("Player 2 Move: " + playerMove[1]);
-            System.out.println("Please key the correct letter");
+            System.out.println("Please key the correct letter again, s,p,r");
+            playerMove[0] = null;
+            playerMove[1] = null;
+
+            chooseSPR(0);
+            chooseSPR(1);
             printGame();
         }
     }
@@ -66,7 +90,7 @@ public class frozen2 {
 
         while(true)
         {
-            if (chosenNum > 4 || chosenNum <= 0){
+            if (chosenNum > 4 || chosenNum <= 0 || !(chosenNum > 0 || chosenNum < 5) ){
                 chooseChar();
                 break;
             } else {
