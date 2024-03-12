@@ -7,6 +7,7 @@ public class frozen2 {
     public static int[] playerPower = {0,0};
     public static int[] playerHealth = {0,0};
     public static String[] playerMove = {null,null};
+    public static int[] playerPoints = {0,0};
 
     public static void printMenu(){
         System.out.println("1. Elsa");
@@ -23,20 +24,56 @@ public class frozen2 {
             if (playerMove[playerNo] == null){
                 System.out.println(playerName[playerNo] + " please choose s,p,r: ");
                 playerMove[playerNo] = newScan.nextLine();  // Read user input
-                break;
-                // if ((playerMove[playerNo].charAt(0) != 's')|| 
-                // (playerMove[playerNo].charAt(0) != 'p')|| 
-                // (playerMove[playerNo].charAt(0) != 'r'))
-                // {
-                //     break;
-                // } else {
-                //     break;
-                // }
-                
+                break;                
             }
             break;
         };
 
+    }
+
+    public static void checkWin(int playerNum){
+        if (playerNum == 0) //player 1 wins
+        { 
+            System.out.println(playerName[playerNum] + " Wins, " + playerName[playerNum] + " has gain 1 point");
+            playerPoints[playerNum] += 1;
+            playerHealth[1] -= 10; //player 2 loses health
+
+            if (playerPoints[playerNum] == 3)
+            {
+                System.out.println(playerName[playerNum] + " has build a castle");
+                playerPoints[playerNum] = 0;
+            }
+            
+            
+            if (playerPoints[1] > 0){
+                playerPoints[1] = 0;
+            }
+
+            if (playerHealth[1] <= 0){
+                System.out.println(playerName[playerNum] + " wins as " + playerName[1] + " has died");
+                System.exit(0);
+            }
+        } else if (playerNum == 1) //player 2 wins
+        {
+            System.out.println(playerName[playerNum] + " Wins, " + playerName[playerNum] + " has gain 1 point");
+            playerPoints[playerNum] += 1;
+            playerHealth[0] -= 10; //player 1 loses health
+
+            if (playerPoints[playerNum] == 3)
+            {
+                System.out.println(playerName[playerNum] + " has build a castle");
+                playerPoints[playerNum] = 0;
+            }
+            
+            if (playerPoints[0] > 0){
+                playerPoints[0] = 0;
+            }
+
+            if (playerHealth[0] <= 0){
+                System.out.println(playerName[playerNum] + " wins as " + playerName[0] + " has died");
+                System.exit(0);
+            }
+        } 
     }
 
     public static void printGame() 
@@ -46,28 +83,97 @@ public class frozen2 {
 
         if (playerMove[0].charAt(0) == 's' && playerMove[1].charAt(0) == 's'){
             System.out.println("It is a tie");
+
+            playerMove[0] = null;
+            playerMove[1] = null;
+
+            chooseSPR(0);
+            chooseSPR(1);
+            printGame();
         } else if (playerMove[0].charAt(0) == 'r' && playerMove[1].charAt(0) == 'r'){
             System.out.println("It is a tie");
+
+            playerMove[0] = null;
+            playerMove[1] = null;
+
+            chooseSPR(0);
+            chooseSPR(1);
+            printGame();
         } else if (playerMove[0].charAt(0) == 'p' && playerMove[1].charAt(0) == 'p'){
             System.out.println("It is a tie");
+
+            playerMove[0] = null;
+            playerMove[1] = null;
+
+            chooseSPR(0);
+            chooseSPR(1);
+            printGame();
         } else if (playerMove[0].charAt(0) == 's' && playerMove[1].charAt(0) == 'p'){ //Player 1 wins, Player 2 Loses
             System.out.println(playerName[0] + " Wins");
             System.out.println(playerName[1] + " Loses");
+            checkWin(0);
+
+            playerMove[0] = null;
+            playerMove[1] = null;
+
+            chooseSPR(0);
+            chooseSPR(1);
+            printGame();
         } else if (playerMove[0].charAt(0) == 'p' && playerMove[1].charAt(0) == 'r'){ //Player 1 wins, Player 2 Loses
             System.out.println(playerName[0] + " Wins");
             System.out.println(playerName[1] + " Loses");
+            checkWin(0);
+
+            playerMove[0] = null;
+            playerMove[1] = null;
+
+            chooseSPR(0);
+            chooseSPR(1);
+            printGame();
         } else if (playerMove[0].charAt(0) == 'r' && playerMove[1].charAt(0) == 's'){ //Player 1 wins, Player 2 Loses
             System.out.println(playerName[0] + " Wins");
             System.out.println(playerName[1] + " Loses");
+            checkWin(0);
+
+            playerMove[0] = null;
+            playerMove[1] = null;
+
+            chooseSPR(0);
+            chooseSPR(1);
+            printGame();
         } else if (playerMove[1].charAt(0) == 's' && playerMove[0].charAt(0) == 'p'){ //Player 2 wins, Player 1 Loses
             System.out.println(playerName[1] + " Wins");
             System.out.println(playerName[0] + " Loses");
+            checkWin(1);
+
+            playerMove[0] = null;
+            playerMove[1] = null;
+
+            chooseSPR(0);
+            chooseSPR(1);
+            printGame();
         } else if (playerMove[1].charAt(0) == 'p' && playerMove[0].charAt(0) == 'r'){ //Player 2 wins, Player 1 Loses
             System.out.println(playerName[1] + " Wins");
             System.out.println(playerName[0] + " Loses");
+            checkWin(1);
+
+            playerMove[0] = null;
+            playerMove[1] = null;
+
+            chooseSPR(0);
+            chooseSPR(1);
+            printGame();
         } else if (playerMove[1].charAt(0) == 'r' && playerMove[0].charAt(0) == 's'){ //Player 2 wins, Player 1 Loses
             System.out.println(playerName[1] + " Wins");
             System.out.println(playerName[0] + " Loses");
+            checkWin(1);
+
+            playerMove[0] = null;
+            playerMove[1] = null;
+
+            chooseSPR(0);
+            chooseSPR(1);
+            printGame();
         } else {
             System.out.println("Please key the correct letter again, s,p,r");
             playerMove[0] = null;
