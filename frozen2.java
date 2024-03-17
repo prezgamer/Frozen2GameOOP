@@ -95,7 +95,7 @@ public class frozen2 {
 
             playerMove[0] = null;
             playerMove[1] = null;
-
+            //meow
             chooseSPR(0);
             chooseSPR(1);
             printGame();
